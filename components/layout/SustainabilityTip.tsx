@@ -1,5 +1,4 @@
 'use client'
-
 import { useEffect, useState } from 'react'
 
 const tips = [
@@ -43,37 +42,35 @@ const tips = [
     "Keep hospital spaces clean to improve overall efficiency.",
     "Reduce unnecessary electricity usage during daytime.",
     "Small sustainable actions today create a healthier tomorrow."
-  ]
+]
 
 export default function SustainabilityTip() {
     const [tip, setTip] = useState('')
     const [expanded, setExpanded] = useState(false)
 
     useEffect(() => {
-        const randomTip =
-            tips[Math.floor(Math.random() * tips.length)]
+        const randomTip = tips[Math.floor(Math.random() * tips.length)]
         setTip(randomTip)
     }, [])
 
-    const shortTip =
-        tip.length > 40 ? tip.slice(0, 40) + '...' : tip
+    const shortTip = tip.length > 40 ? tip.slice(0, 40) + '...' : tip
 
     return (
-    <div className="flex items-center gap-1 text-xs text-muted-foreground max-w-xs">
-        <span className="shrink-0">
-            🌱 <strong className="text-foreground">Daily Sustainability Tip:</strong>
-        </span>
-        <span className="truncate">
-            {expanded ? tip : shortTip}
-        </span>
-        {tip.length > 40 && (
-            <button
-                onClick={() => setExpanded(!expanded)}
-                className="underline text-xs whitespace-nowrap shrink-0"
-            >
-                {expanded ? 'Less' : 'More'}
-            </button>
-        )}
-    </div>
-)
+        <div className="flex items-center gap-1 text-xs text-muted-foreground mt-1">
+            <span className="shrink-0">
+                🌱 <strong className="text-foreground">Daily Sustainability Tip:</strong>
+            </span>
+            <span>
+                {expanded ? tip : shortTip}
+            </span>
+            {tip.length > 40 && (
+                <button
+                    onClick={() => setExpanded(!expanded)}
+                    className="underline text-xs whitespace-nowrap shrink-0"
+                >
+                    {expanded ? 'Less' : 'More'}
+                </button>
+            )}
+        </div>
+    )
 }
